@@ -8,23 +8,51 @@
         color: 'red',
       }"
     ></AppTopBar>
-    <div class="list-box">
-      <div class="list" v-for="i in 10" :key="i">
-        <div class="img-box">
-          <img src="" alt="" />
-        </div>
-        <div class="name app-multi-ellipsis--l2">
-          2024 Asia Regionals - Playoffs RERUN: Lemon vs. Nanami - ESL SC2
-          Masters Spring
+    <LoadList :onload="informationVideo" :finished="finished">
+      <div class="list-box">
+        <div class="list" v-for="(item, i) in video" :key="i">
+          <div class="img-box">
+            <img :src="item.imageUrl" alt="" />
+          </div>
+          <div class="name app-multi-ellipsis--l2">
+            {{ item.title }}
+          </div>
         </div>
       </div>
-    </div>
+    </LoadList>
   </div>
 </template>
 
 <script>
+import userApi from "@/api/user";
 export default {
   name: "LiveView",
+  data() {
+    return {
+      finished: false,
+      video: [],
+      query: {
+        pageNo: 1,
+        pageSize: 20,
+      },
+    };
+  },
+  methods: {
+    async informationVideo(obj = {}) {
+      const params = {
+        ...this.query,
+        ...obj,
+      };
+      const [err, res] = await userApi.informationVideo(params);
+      if (err) return;
+      this.finished = res.data.results.length < this.query.pageSize;
+      this.query.pageNo++;
+      this.video =
+        params.pageNo == 1
+          ? res.data.results
+          : this.video.concat(res.data.results);
+    },
+  },
 };
 </script>
 <style scoped lang="less">

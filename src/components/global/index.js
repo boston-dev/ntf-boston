@@ -10,6 +10,7 @@ import NoData from "@/components/global/NoData.vue";
 import RowMatch from "@/components/global/RowMatch.vue";
 import ComfireDialog from "@/components/global/ComfireDialog.vue";
 import BtmActionLang from "@/components/global/BtmActionLang.vue";
+import LoadList from "@/components/global/LoadList.vue";
 import {
   Form,
   Field,
@@ -50,6 +51,7 @@ export default {
     Vue.component(RowMatch.name, RowMatch);
     Vue.component(ComfireDialog.name, ComfireDialog);
     Vue.component(BtmActionLang.name, BtmActionLang);
+    Vue.component(LoadList.name, LoadList);
     Vue.use(Form);
     Vue.use(Field);
     Vue.use(Button);

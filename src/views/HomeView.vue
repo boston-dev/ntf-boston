@@ -7,7 +7,7 @@
         </li>
         <li class="flex-1 text-center txt">logo.com</li>
         <li class="align-center lef-icon">
-          <p class="m-r-16">
+          <p class="m-r-16" @click="openLang">
             <img class="d-img" src="@/assets/img/ntf/home/nav1.png" alt="" />
           </p>
           <p class="m-r-16">
@@ -124,19 +124,24 @@
     <div class="hot-live-stream">
       <div class="title-box flex-wrap">
         <div class="left flex-grow1">Hot Live Stream</div>
-        <div class="right">
+        <div class="right" @click="$router.push('/pages/live')">
           more
           <van-icon class="m-l-4" name="arrow" />
         </div>
       </div>
       <div class="list-box">
-        <div class="list" v-for="i in 5" :key="i">
+        <div
+          class="list"
+          @click="viewVideo(item)"
+          v-for="(item, i) in video"
+          :key="i"
+        >
           <div class="img-box">
-            <img src="" alt="" />
+            <img :src="item.imageUrl" alt="" />
             <div></div>
           </div>
           <div class="name app-multi-ellipsis--l2">
-            2024 Asia Regionals - Playoffs RERU N: Lemon vs. Nanami …
+            {{ item.title }}
           </div>
         </div>
       </div>
@@ -144,8 +149,12 @@
     <div class="game-download">
       <div class="title">Game Download</div>
       <div class="list-box">
-        <div class="list flex-wrap" v-for="i in 8" :key="i">
-          <img src="" alt="" class="img" />
+        <div class="list flex-wrap" v-for="i in 1" :key="i">
+          <img
+            src="https://hjduas.xyz/cafephim444585/index.jpg"
+            alt=""
+            class="img"
+          />
           <div class="info-box flex-grow1 text-ellipsis">
             <div class="name text-ellipsis">League of Legends</div>
             <div class="des text-ellipsis">
@@ -176,17 +185,20 @@
         </div>
       </div>
     </div>
+    <BtmActionLang ref="BtmActionLang" />
   </div>
 </template>
 
 <script>
 import dayjs from "dayjs";
 import userApi from "@/api/user";
+
 export default {
   name: "HomeView",
   data() {
     return {
       sold: [],
+      video: [],
     };
   },
   computed: {
@@ -195,8 +207,23 @@ export default {
     },
   },
   methods: {
+    openLang() {
+      this.$refs.BtmActionLang.open();
+    },
+    viewVideo(v) {
+      //location.href =v.videoUrl
+      window.open(v.videoUrl);
+    },
     date(item) {
       return dayjs.unix(item.createTime).format("YYYY-MM-DD");
+    },
+    async informationVideo() {
+      const [err, res] = await userApi.informationVideo({
+        pageNo: 1,
+        pageSize: 8,
+      });
+      if (err) return;
+      this.video = res.data.results;
     },
     async informationDealSold() {
       //pageNo  pageSize
@@ -211,6 +238,7 @@ export default {
   created() {
     this.$store.commit("setPdTop", false);
     this.informationDealSold();
+    this.informationVideo();
   },
 };
 </script>

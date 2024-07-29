@@ -636,10 +636,17 @@ export default {
       data,
     });
   },
-  ///information/deal/sold
   informationDealSold(data) {
     return request({
       url: "/information/deal/sold",
+      method: "post",
+      data,
+    });
+  },
+  ///information/video
+  informationVideo(data) {
+    return request({
+      url: "/information/video",
       method: "post",
       data,
     });
