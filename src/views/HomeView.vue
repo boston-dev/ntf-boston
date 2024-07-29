@@ -97,6 +97,72 @@
         {{ $t(`user.platform.more`) }}
         <van-icon class="m-l-4" name="arrow" />
       </p>
+      <div class="content-box">
+        <div class="left-top top">Date/Time</div>
+        <div class="right-top top">From/Arrive</div>
+        <div class="list flex-wrap" v-for="i in 4" :key="i">
+          <div class="b b-1 center-center">2024-07-18</div>
+          <div class="b b-2 text-ellipsis center-center"></div>
+          <div class="b b-3 text-ellipsis center-center">AK-471H…</div>
+          <div class="b b-4 text-ellipsis center-center">+712.0</div>
+          <div class="b b-5 text-ellipsis center-center">0x…/0x1…</div>
+        </div>
+      </div>
+    </div>
+    <div class="hot-live-stream">
+      <div class="title-box flex-wrap">
+        <div class="left flex-grow1">Hot Live Stream</div>
+        <div class="right">
+          more
+          <van-icon class="m-l-4" name="arrow" />
+        </div>
+      </div>
+      <div class="list-box">
+        <div class="list" v-for="i in 5" :key="i">
+          <div class="img-box">
+            <img src="" alt="" />
+            <div></div>
+          </div>
+          <div class="name app-multi-ellipsis--l2">
+            2024 Asia Regionals - Playoffs RERU N: Lemon vs. Nanami …
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="game-download">
+      <div class="title">Game Download</div>
+      <div class="list-box">
+        <div class="list flex-wrap" v-for="i in 8" :key="i">
+          <img src="" alt="" class="img" />
+          <div class="info-box flex-grow1 text-ellipsis">
+            <div class="name text-ellipsis">League of Legends</div>
+            <div class="des text-ellipsis">
+              3D Multiplayer Online Battle Arena Game
+            </div>
+            <div class="c-box flex-wrap">
+              <div class="star-box center-center">
+                <van-icon
+                  class="icon"
+                  name="star"
+                  color="#f4d144"
+                  size="12px"
+                />
+                4.8
+              </div>
+              <div class="line">|</div>
+              <div class="download-box center-center">
+                <van-icon
+                  class="icon download-icon"
+                  name="back-top"
+                  color="#fff"
+                  size="14px"
+                />
+                Download
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -231,7 +297,8 @@ export default {
   }
 }
 .game-hot {
-  height: 225px;
+  width: 375px;
+  height: 256px;
   background: url("@/assets/img/ntf/home/gamehot.png") no-repeat;
   background-size: 100% 100%;
   position: relative;
@@ -249,6 +316,142 @@ export default {
     line-height: 1;
     right: 16px;
     top: 16px;
+  }
+  .content-box {
+    width: 343px;
+    margin: 0 auto;
+    color: #e3e7ec;
+    padding-top: 26px;
+    position: relative;
+    .top {
+      position: absolute;
+      color: #808080;
+      font-size: 9px;
+      top: 16px;
+      &.left-top {
+        left: 9.5px;
+      }
+      &.right-top {
+        right: 9.5px;
+      }
+    }
+    .list {
+      height: 45.8px;
+      padding: 0 12px;
+      border-bottom: 1px solid rgba(242, 242, 242, 0.06);
+      align-items: center;
+      &:last-child {
+        border-bottom: none;
+      }
+      .b {
+        flex: 1;
+        margin-right: 10px;
+        width: 50px;
+        justify-content: normal !important;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+      .b-1 {
+        text-align: center;
+        width: 50px;
+        flex: none;
+      }
+      .b-4 {
+        color: #f5673e;
+      }
+      .b-2 {
+        background: url("@/assets/img/HomeView/dao-icon.png") no-repeat;
+        width: 35px;
+        height: 35px;
+        background-size: 35px 35px;
+        background-position: center;
+      }
+    }
+  }
+}
+.hot-live-stream {
+  margin-top: 28px;
+  .title-box {
+    padding: 0 16px;
+    .left {
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .right {
+      color: #f5673e;
+      font-size: 10px;
+    }
+  }
+  .list-box {
+    margin-top: 15px;
+    display: flex;
+    overflow: auto;
+    padding: 0 16px;
+    .img-box {
+      width: 240px;
+      height: 128px;
+      overflow: hidden;
+      border-radius: 8px;
+      background-color: #fff;
+      img {
+        width: 240px;
+        height: 128px;
+      }
+    }
+    .list {
+      margin-right: 16px;
+      width: 240px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    .name {
+      margin-top: 14px;
+      color: #e3e7ec;
+      font-size: 14px;
+    }
+  }
+}
+.game-download {
+  padding: 0 16px;
+  margin-top: 25px;
+  color: #e3e7ec;
+  .title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .list {
+    padding-bottom: 21px;
+    padding-top: 17px;
+    border-top: 1px solid #020808;
+    .img {
+      width: 66px;
+      height: 66px;
+    }
+    .info-box {
+      margin-left: 16px;
+    }
+    .name {
+      font-size: 14px;
+    }
+    .des {
+      margin-top: 8px;
+      color: #858585;
+    }
+    .c-box {
+      margin-top: 5px;
+    }
+    .line {
+      margin: 0 10px;
+    }
+    .download-icon {
+      transform: rotate(180deg);
+    }
+    .icon {
+      margin-right: 5px;
+    }
   }
 }
 </style>

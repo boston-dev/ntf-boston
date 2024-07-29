@@ -436,6 +436,13 @@ const routes = [
       default: () => import("@/views/deal/message.vue"),
     },
   },
+  {
+    path: "/pages/live",
+    name: "Live",
+    components: {
+      default: () => import("@/views/live.vue"),
+    },
+  },
   //lie  登录 密码  arman arman999
   // 页面的英文标题 标注下我方便找页面套数据
   // {
