@@ -436,6 +436,15 @@ const routes = [
       default: () => import("@/views/deal/message.vue"),
     },
   },
+  //lie  登录 密码  arman arman999
+  // 页面的英文标题 标注下我方便找页面套数据
+  // {
+  //   path: "/pages/deal/bellCenterMer",
+  //   name: "DealMessage",
+  //   components: {
+  //     default: () => import("@/views/deal/message.vue"),
+  //   },
+  // },
 ];
 
 const router = new VueRouter({
