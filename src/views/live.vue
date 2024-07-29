@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: "Live",
+  name: "LiveView",
 };
 </script>
 <style scoped lang="less">
