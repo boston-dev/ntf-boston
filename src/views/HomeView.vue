@@ -98,14 +98,26 @@
         <van-icon class="m-l-4" name="arrow" />
       </p>
       <div class="content-box">
-        <div class="left-top top">Date/Time</div>
-        <div class="right-top top">From/Arrive</div>
-        <div class="list flex-wrap" v-for="i in 4" :key="i">
-          <div class="b b-1 center-center">2024-07-18</div>
-          <div class="b b-2 text-ellipsis center-center"></div>
-          <div class="b b-3 text-ellipsis center-center">AK-471H…</div>
-          <div class="b b-4 text-ellipsis center-center">+712.0</div>
-          <div class="b b-5 text-ellipsis center-center">0x…/0x1…</div>
+        <div class="left-top top text-ellipsis">Date/Time</div>
+        <div class="right-top top text-ellipsis">From/Arrive</div>
+        <div class="list flex-wrap" v-for="(item, i) in sold" :key="i">
+          <div class="b b-1 center-center">
+            {{ date(item) }}
+          </div>
+          <div class="b b-2 text-ellipsis center-center">
+            <van-image fit="contain" :src="item.image" />
+          </div>
+          <div class="b b-3 text-ellipsis center-center">
+            <p class="text-ellipsis">
+              {{ item.title }}
+            </p>
+          </div>
+          <div class="b b-4 text-ellipsis center-center">+{{ item.money }}</div>
+          <div class="b b-5 text-ellipsis center-center">
+            <p class="text-ellipsis from-to">{{ item.from }}</p>
+            /
+            <p class="text-ellipsis from-to">{{ item.to }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -168,10 +180,14 @@
 </template>
 
 <script>
+import dayjs from "dayjs";
+import userApi from "@/api/user";
 export default {
   name: "HomeView",
   data() {
-    return {};
+    return {
+      sold: [],
+    };
   },
   computed: {
     user() {
@@ -179,10 +195,22 @@ export default {
     },
   },
   methods: {
-    informationDealSold() {},
+    date(item) {
+      return dayjs.unix(item.createTime).format("YYYY-MM-DD");
+    },
+    async informationDealSold() {
+      //pageNo  pageSize
+      const [err, res] = await userApi.informationDealSold({
+        pageNo: 1,
+        pageSize: 4,
+      });
+      if (err) return;
+      this.sold = res.data.results;
+    },
   },
   created() {
     this.$store.commit("setPdTop", false);
+    this.informationDealSold();
   },
 };
 </script>
@@ -225,6 +253,9 @@ export default {
     font-size: 16px;
     font-weight: bold;
   }
+}
+.from-to {
+  width: 34px;
 }
 .money-list {
   //width: 220.5px;
@@ -328,6 +359,7 @@ export default {
       color: #808080;
       font-size: 9px;
       top: 16px;
+      width: 54px;
       &.left-top {
         left: 9.5px;
       }
