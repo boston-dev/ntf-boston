@@ -79,7 +79,7 @@
     </div>
     <div
       class="game-hot"
-      @click="$router.push({ path: '/pages/information/information' })"
+      @click="$router.push({ name: `ItemShop`, query: { tab: 1 } })"
     >
       <div class="center-center hot-title p-t-8 text-center">
         <p>
@@ -93,10 +93,7 @@
           <img src="@/assets/img/ntf/home/left.png" alt="" />
         </p>
       </div>
-      <p
-        class="center-center more color-active"
-        @click="$router.push({ name: `ItemShop`, query: { tab: 1 } })"
-      >
+      <p class="center-center more color-active">
         {{ $t(`user.platform.more`) }}
         <van-icon class="m-l-4" name="arrow" />
       </p>
@@ -193,7 +190,7 @@
 </template>
 
 <script>
-//import dayjs from "dayjs";
+import dayjs from "dayjs";
 import userApi from "@/api/user";
 
 export default {
@@ -217,9 +214,9 @@ export default {
       //location.href =v.videoUrl
       window.open(v.videoUrl);
     },
-    // date(item) {
-    //   return dayjs.unix(item.createTime).format("YYYY-MM-DD");
-    // },
+    date(item) {
+      return dayjs.unix(item.createTime).format("YYYY-MM-DD");
+    },
     async informationVideo() {
       const [err, res] = await userApi.informationVideo({
         pageNo: 1,
