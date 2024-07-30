@@ -44,7 +44,7 @@
       <ul class="enter justify-between p-l-16 p-r-16">
         <li
           class="flex-column center-center"
-          @click="$router.push({ path: '/pages/home/gameTools' })"
+          @click="$router.push({ name: `ItemShop` })"
         >
           <div class="els desc">
             <p class="m-b-8 els">{{ $t(`user.Item.shop`) }}</p>
@@ -98,8 +98,8 @@
         <van-icon class="m-l-4" name="arrow" />
       </p>
       <div class="content-box">
-        <div class="left-top top text-ellipsis">Date/Time</div>
-        <div class="right-top top text-ellipsis">From/Arrive</div>
+        <div class="left-top top text-ellipsis">{{ $t(`Date.Time`) }}</div>
+        <div class="right-top top text-ellipsis">{{ $t(`From.Arrive`) }}</div>
         <div class="list flex-wrap" v-for="(item, i) in sold" :key="i">
           <div class="b b-1 center-center">
             {{ date(item) }}
@@ -123,9 +123,9 @@
     </div>
     <div class="hot-live-stream">
       <div class="title-box flex-wrap">
-        <div class="left flex-grow1">Hot Live Stream</div>
+        <div class="left flex-grow1">{{ $t(`Hot.Live.Stream`) }}</div>
         <div class="right" @click="$router.push('/pages/live')">
-          more
+          {{ $t(`user.platform.more`) }}
           <van-icon class="m-l-4" name="arrow" />
         </div>
       </div>
@@ -147,7 +147,7 @@
       </div>
     </div>
     <div class="game-download">
-      <div class="title">Game Download</div>
+      <div class="title">{{ $t(`Game.Download`) }}</div>
       <div class="list-box">
         <div class="list flex-wrap" v-for="i in 1" :key="i">
           <img

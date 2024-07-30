@@ -643,10 +643,17 @@ export default {
       data,
     });
   },
-  ///information/video
   informationVideo(data) {
     return request({
       url: "/information/video",
+      method: "post",
+      data,
+    });
+  },
+  ///information/deal
+  informationDeal(data) {
+    return request({
+      url: "/information/deal",
       method: "post",
       data,
     });

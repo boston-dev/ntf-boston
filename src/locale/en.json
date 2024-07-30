@@ -1136,5 +1136,11 @@
   "user.Item.Asset":"Asset center",
   "user.platform.trading":"24-hour trading platform",
   "user.platform.trading.desc":"Free transaction fee service",
-  "user.platform.more":"more"
+  "user.platform.more":"more",
+  "Date.Time":"Date/Time",
+  "From.Arrive":"From/Arrive",
+  "Hot.Live.Stream":"Hot Live Stream",
+  "Game.Download":"Game Download",
+  "Game.Props":"Game Props",
+  "user.Contest":"Contest"
 }
