@@ -650,10 +650,16 @@ export default {
       data,
     });
   },
-  ///information/deal
   informationDeal(data) {
     return request({
       url: "/information/deal",
+      method: "post",
+      data,
+    });
+  },
+  informationGame(data) {
+    return request({
+      url: "/information/game",
       method: "post",
       data,
     });

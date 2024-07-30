@@ -143,7 +143,7 @@ export default {
       border-radius: 8px 8px 0 0;
       background-image: radial-gradient(
         circle at 11% 8%,
-        rgba(255, 255, 255, 0.44),
+        rgba(255, 255, 255, 0.3),
         rgba(255, 255, 255, 0.03) 137%
       );
     }

@@ -23,12 +23,14 @@
     </ul>
     <itemGame v-if="current == 0" />
     <itemTrade v-if="current == 1" />
+    <itemContest v-if="current == 2" />
   </div>
 </template>
 
 <script>
 import itemGame from "@/views/itemGame";
 import itemTrade from "@/views/itemTrade";
+import itemContest from "@/views/itemContest.vue";
 import i18n from "@/locale";
 import userApi from "@/api/user";
 export default {
@@ -36,6 +38,7 @@ export default {
   components: {
     itemGame,
     itemTrade,
+    itemContest,
   },
   data() {
     return {

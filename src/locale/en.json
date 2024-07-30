@@ -1144,5 +1144,8 @@
   "Game.Props":"Game Props",
   "user.Contest":"Contest",
   "user.Game":"Game Download",
-  "user.Game.thing":"Thing"
+  "user.Game.thing":"Thing",
+  "About.to.start":"About to start",
+  "user.in.progress":"in progress",
+  "user.over":"over"
 }
