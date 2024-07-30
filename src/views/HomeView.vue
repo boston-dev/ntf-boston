@@ -44,7 +44,7 @@
       <ul class="enter justify-between p-l-16 p-r-16">
         <li
           class="flex-column center-center"
-          @click="$router.push({ name: `ItemShop` })"
+          @click="$router.push({ name: `ItemShop`, query: { tab: 0 } })"
         >
           <div class="els desc">
             <p class="m-b-8 els">{{ $t(`user.Item.shop`) }}</p>
@@ -93,7 +93,10 @@
           <img src="@/assets/img/ntf/home/left.png" alt="" />
         </p>
       </div>
-      <p class="center-center more color-active">
+      <p
+        class="center-center more color-active"
+        @click="$router.push({ name: `ItemShop`, query: { tab: 1 } })"
+      >
         {{ $t(`user.platform.more`) }}
         <van-icon class="m-l-4" name="arrow" />
       </p>
@@ -190,7 +193,7 @@
 </template>
 
 <script>
-import dayjs from "dayjs";
+//import dayjs from "dayjs";
 import userApi from "@/api/user";
 
 export default {
@@ -214,9 +217,9 @@ export default {
       //location.href =v.videoUrl
       window.open(v.videoUrl);
     },
-    date(item) {
-      return dayjs.unix(item.createTime).format("YYYY-MM-DD");
-    },
+    // date(item) {
+    //   return dayjs.unix(item.createTime).format("YYYY-MM-DD");
+    // },
     async informationVideo() {
       const [err, res] = await userApi.informationVideo({
         pageNo: 1,

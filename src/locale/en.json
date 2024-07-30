@@ -1142,5 +1142,7 @@
   "Hot.Live.Stream":"Hot Live Stream",
   "Game.Download":"Game Download",
   "Game.Props":"Game Props",
-  "user.Contest":"Contest"
+  "user.Contest":"Contest",
+  "user.Game":"Game Download",
+  "user.Game.thing":"Thing"
 }

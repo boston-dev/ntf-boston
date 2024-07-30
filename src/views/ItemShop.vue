@@ -13,6 +13,7 @@
     </div>
     <ul class="justify-around align-center navs m-t-16 m-b-16">
       <li
+        @click="chose(item)"
         :class="{ cur: current === item.key }"
         v-for="(item, i) in navs"
         :key="i"
@@ -20,22 +21,25 @@
         {{ item.name }}
       </li>
     </ul>
-    <itemGame />
+    <itemGame v-if="current == 0" />
+    <itemTrade v-if="current == 1" />
   </div>
 </template>
 
 <script>
 import itemGame from "@/views/itemGame";
+import itemTrade from "@/views/itemTrade";
 import i18n from "@/locale";
 import userApi from "@/api/user";
 export default {
   name: "ItemShop",
   components: {
     itemGame,
+    itemTrade,
   },
   data() {
     return {
-      current: 0,
+      current: +this.$route.query.tab || 0,
       navs: [
         {
           name: i18n.t(`Game.Props`),
@@ -53,13 +57,19 @@ export default {
     };
   },
   methods: {
+    chose(item) {
+      this.current = item.key;
+    },
     async informationVideo(obj = {}) {
       const params = {
         ...this.query,
         ...obj,
       };
       const [err, res] = await userApi.informationVideo(params);
-      if (err) return;
+      if (err) {
+        this.finished = true;
+        return;
+      }
       this.finished = res.data.results.length < this.query.pageSize;
       this.query.pageNo++;
       this.video =
