@@ -1,6 +1,6 @@
 <template>
   <div class="font12">
-    <van-sticky>
+    <van-sticky :offset-top="0">
       <ul class="nav justify-between align-center">
         <li class="logo center-center">
           <img class="d-img" src="@/assets/img/ntf/home/logo.png" alt="" />
