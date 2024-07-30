@@ -64,7 +64,9 @@ export default {
   },
   methods: {
     date(item) {
-      return dayjs.unix(item.createTime).format("YYYY-MM-DD");
+      return dayjs
+        .unix(this.$ToSeconds(item.createTime))
+        .format("YYYY-MM-DD HH:mm");
     },
     async informationVideo(obj = {}) {
       const params = {
@@ -77,11 +79,12 @@ export default {
         return false;
       }
       this.finished = res.data.results.length < this.query.pageSize;
-      this.query.pageNo++;
+
       this.video =
         params.pageNo == 1
           ? res.data.results
           : this.video.concat(res.data.results);
+      this.query.pageNo++;
     },
   },
 };

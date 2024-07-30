@@ -74,11 +74,12 @@ export default {
         return;
       }
       this.finished = res.data.results.length < this.query.pageSize;
-      this.query.pageNo++;
+
       this.video =
         params.pageNo == 1
           ? res.data.results
           : this.video.concat(res.data.results);
+      this.query.pageNo++;
     },
   },
 };

@@ -215,7 +215,7 @@ export default {
       window.open(v.videoUrl);
     },
     date(item) {
-      return dayjs.unix(item.createTime).format("YYYY-MM-DD");
+      return dayjs.unix(this.$ToSeconds(item.createTime)).format("YYYY-MM-DD");
     },
     async informationVideo() {
       const [err, res] = await userApi.informationVideo({

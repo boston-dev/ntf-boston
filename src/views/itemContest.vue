@@ -19,7 +19,7 @@
           :key="i"
           class="contest-item m-b-8 align-center justify-between p-r-16"
         >
-          <ul class="time p-l-16">
+          <ul class="time">
             <li v-if="item.startTime">
               {{ date(item.startTime) }}
             </li>
@@ -86,8 +86,7 @@ export default {
   },
   methods: {
     date(tiem) {
-      console.log(tiem);
-      return dayjs.unix(tiem / 1000).format("MM-DD");
+      return dayjs.unix(this.$ToSeconds(tiem)).format("MM-DD HH:mm");
     },
     async chosen(item) {
       this.status = item.key;
@@ -105,11 +104,12 @@ export default {
       const [err, res] = await userApi.informationGame(this.query);
       if (err) return;
       this.finished = res.data.results.length < this.query.pageSize;
-      this.query.pageNo++;
+
       this.video =
         this.query.pageNo == 1
           ? res.data.results
           : this.video.concat(res.data.results);
+      this.query.pageNo++;
     },
   },
 };
@@ -152,7 +152,11 @@ export default {
     }
   }
   .time {
-    width: 72px;
+    width: 84px;
+    text-align: center;
+    & > li {
+      margin: 3px 0;
+    }
   }
 }
 .main-macth {
